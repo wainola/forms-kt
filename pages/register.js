@@ -1,41 +1,33 @@
 import React from 'react';
+import { FormComponent, InputDNI } from '../components';
 
 export default function Register() {
+  const formValues = {
+    dni: '',
+  };
+
+  // HERE I CAN DO THE SUBMITING
+  const handleSubmit = async function (values, actions) {
+    // evt.preventDefault();
+    console.log('values external submit', values);
+  };
   return (
     <div>
       <div>
         <h2>Register</h2>
       </div>
       <div>
-        <form>
-          <div>
-            <label htmlFor="dni">DNI</label>
-            <input type="text" placeholder="dni" id="dni" />
-          </div>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" placeholder="name" id="name" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" placeholder="email" id="email" />
-          </div>
-          <div>
-            <label htmlFor="phone">Phone</label>
-            <input type="tel" placeholder="Phone number" id="phone" />
-          </div>
-          <div>
-            <label htmlFor="country">Country</label>
-            <input type="text" placeholder="Country" id="country" />
-          </div>
-          <div>
-            <label htmlFor="region">Region</label>
-            <input type="text" placeholder="Region" id="region" />
-          </div>
-          <div>
-            <button type="submit">Send</button>
-          </div>
-        </form>
+        <FormComponent formValues={formValues} onSubmit={handleSubmit}>
+          <InputDNI
+            name="dni"
+            type="text"
+            placeholder="dni"
+            labelFor="dni"
+            id="dni"
+            label="DNI"
+          />
+          <button type="submit">Submit</button>
+        </FormComponent>
       </div>
     </div>
   );
