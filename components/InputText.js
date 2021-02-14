@@ -15,7 +15,7 @@ export default function InputText({
     return field.onChange(evt);
   };
   return (
-    <div>
+    <div className="flex flex-col">
       <label htmlFor={labelFor}>{label}</label>
       <input
         type={type}
@@ -23,6 +23,7 @@ export default function InputText({
         id={id}
         name={name}
         onChange={handleChange}
+        className="border-2"
       />
     </div>
   );

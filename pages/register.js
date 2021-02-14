@@ -34,6 +34,30 @@ export default function Register() {
             id="names"
             label="Names"
           />
+          <InputText
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            labelFor="email"
+            id="email"
+            label="Email"
+          />
+          <InputText
+            name="phone"
+            type="tel"
+            placeholder="Enter your phone"
+            labelFor="phone"
+            id="phone"
+            label="Phone"
+          />
+          <InputText
+            name="Region"
+            type="selector"
+            placeholder="Enter your region"
+            labelFor="region"
+            id="region"
+            label="region"
+          />
           <button type="submit">Submit</button>
         </FormComponent>
       </div>
