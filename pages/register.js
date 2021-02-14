@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormComponent, InputDNI } from '../components';
+import { FormComponent, InputDNI, InputText } from '../components';
 
 export default function Register() {
   const formValues = {
@@ -25,6 +25,14 @@ export default function Register() {
             labelFor="dni"
             id="dni"
             label="DNI"
+          />
+          <InputText
+            name="names"
+            type="text"
+            placeholder="Enter your names"
+            labelFor="names"
+            id="names"
+            label="Names"
           />
           <button type="submit">Submit</button>
         </FormComponent>
