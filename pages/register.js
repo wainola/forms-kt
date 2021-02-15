@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormComponent, InputDNI, InputText } from '../components';
+import { FormComponent, InputDNI, InputControl } from '../components';
 import { getComunes, getRegions } from '../utils/constants';
 import {
   nameValidation,
@@ -31,7 +31,7 @@ export default function Register() {
 
   // HERE I CAN DO THE SUBMITING
   const handleSubmit = async function (values, actions) {
-    // evt.preventDefault();
+    evt.preventDefault();
     console.log('values external submit', values);
   };
   return (
@@ -41,7 +41,12 @@ export default function Register() {
           <h2>Register</h2>
         </div>
         <div className="flex flex-col ml-16 mr-16">
-          <FormComponent formValues={formValues} onSubmit={handleSubmit}>
+          <FormComponent
+            formValues={formValues}
+            onSubmit={handleSubmit}
+            validationOnChange={false}
+            validationOnBlur={false}
+          >
             <InputDNI
               name="dni"
               type="text"
@@ -50,7 +55,7 @@ export default function Register() {
               id="dni"
               label="DNI"
             />
-            <InputText
+            <InputControl
               name="names"
               type="text"
               placeholder="Enter your names"
@@ -59,7 +64,7 @@ export default function Register() {
               label="Names"
               validateFunc={nameValidation}
             />
-            <InputText
+            <InputControl
               name="email"
               type="email"
               placeholder="Enter your email"
@@ -68,7 +73,7 @@ export default function Register() {
               label="Email"
               validateFunc={emailValidation}
             />
-            <InputText
+            <InputControl
               name="phone"
               type="tel"
               placeholder="Enter your phone (+569 xxxx xxxx)"
@@ -77,17 +82,17 @@ export default function Register() {
               label="Phone"
               validateFunc={phoneValidation}
             />
-            <InputText
+            <InputControl
               name="region"
               type="select"
               placeholder="Enter your region"
               labelFor="region"
               id="region"
-              label="region"
+              label="Region"
               options={regions}
               selectorCallback={searchComunes}
             />
-            <InputText
+            <InputControl
               name="comune"
               type="select"
               placeholder="Enter your comune"

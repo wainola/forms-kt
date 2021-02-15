@@ -33,7 +33,6 @@ export const phoneValidation = async (phone) => {
     await phoneValidation.validate(phone);
     return undefined;
   } catch (error) {
-    console.log('error', error);
     const {
       errors: [errorMsg],
     } = error;

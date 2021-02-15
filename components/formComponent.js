@@ -1,7 +1,13 @@
 import React from 'react';
 import { Formik, useFormik } from 'formik';
 
-export default function FormComponent({ formValues, onSubmit, children }) {
+export default function FormComponent({
+  formValues,
+  onSubmit,
+  validationOnChange,
+  validationOnBlur,
+  children,
+}) {
   // HERE I CAN DO FINAL VALIDATIONS
   const submit = function (values, actions) {
     console.log('values internal submit', values);
@@ -11,7 +17,8 @@ export default function FormComponent({ formValues, onSubmit, children }) {
     <Formik
       initialValues={formValues}
       onSubmit={submit}
-      validateOnChange={false}
+      validateOnChange={validationOnChange}
+      validateOnBlur={validationOnBlur}
     >
       {(props) => {
         // console.log('props', props);

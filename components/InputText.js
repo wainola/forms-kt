@@ -1,7 +1,7 @@
 import { useField } from 'formik';
 import React from 'react';
 
-export default function InputText({
+export default function InputControl({
   type = 'text',
   labelFor,
   placeholder,
@@ -16,7 +16,6 @@ export default function InputText({
     name,
     validate: validateFunc,
   });
-  console.log(meta);
 
   // const handleChange = function (evt) {
   //   return field.onChange(evt);
