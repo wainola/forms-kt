@@ -19,7 +19,7 @@ export default function InputDNI({
     return field.onChange(evt);
   };
 
-  console.log('data', meta);
+  // console.log('data', meta);
   return (
     <div className="flex flex-col">
       <label htmlFor={labelFor}>{label}</label>

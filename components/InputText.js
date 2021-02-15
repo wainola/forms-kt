@@ -10,14 +10,27 @@ export default function InputText({
   name,
   options,
   selectorCallback,
+  validateFunc,
 }) {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta, helpers] = useField({
+    name,
+    validate: validateFunc,
+  });
+  console.log(meta);
 
-  const handleChange = function (evt) {
-    return field.onChange(evt);
-  };
+  // const handleChange = function (evt) {
+  //   return field.onChange(evt);
+  // };
 
-  const handleSelectorChange = (evt) => {
+  // const handleBlur = function (evt) {
+  //   const {
+  //     target: { value },
+  //   } = evt;
+  //   if (!value.length) {
+  //   }
+  // };
+
+  const handleSelectorChange = function (evt) {
     const {
       target: { value },
     } = evt;
@@ -61,9 +74,15 @@ export default function InputText({
           placeholder={placeholder}
           id={id}
           name={name}
-          onChange={handleChange}
-          className="border-2"
+          onChange={field.onChange}
+          onBlur={field.onBlur}
+          className={`border-2 ${
+            meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
+          }`}
         />
+        <label className="text-red-500 italic">
+          {meta.error !== undefined && meta.error}
+        </label>
       </div>
     );
   };

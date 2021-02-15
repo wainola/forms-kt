@@ -8,8 +8,19 @@ export default function FormComponent({ formValues, onSubmit, children }) {
     return onSubmit(values, actions);
   };
   return (
-    <Formik initialValues={formValues} onSubmit={submit}>
-      {(props) => <form onSubmit={props.handleSubmit}>{children}</form>}
+    <Formik
+      initialValues={formValues}
+      onSubmit={submit}
+      validateOnChange={false}
+    >
+      {(props) => {
+        // console.log('props', props);
+        return (
+          <form onSubmit={props.handleSubmit} {...props}>
+            {children}
+          </form>
+        );
+      }}
     </Formik>
   );
 }
