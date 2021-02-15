@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormComponent, InputDNI, InputText } from '../components';
+import { getComunes, getRegions } from '../utils/constants';
 
 export default function Register() {
+  const [comunes, setComunes] = useState([]);
+  const regions = getRegions;
+  console.log('regions', regions);
+
   const formValues = {
     dni: '',
   };
@@ -51,12 +56,22 @@ export default function Register() {
             label="Phone"
           />
           <InputText
-            name="Region"
-            type="selector"
+            name="region"
+            type="select"
             placeholder="Enter your region"
             labelFor="region"
             id="region"
             label="region"
+            options={regions}
+          />
+          <InputText
+            name="comune"
+            type="select"
+            placeholder="Enter your comune"
+            labelFor="comune"
+            id="comune"
+            label="comune"
+            options={comunes}
           />
           <button type="submit">Submit</button>
         </FormComponent>
