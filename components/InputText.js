@@ -17,18 +17,6 @@ export default function InputControl({
     validate: validateFunc,
   });
 
-  // const handleChange = function (evt) {
-  //   return field.onChange(evt);
-  // };
-
-  // const handleBlur = function (evt) {
-  //   const {
-  //     target: { value },
-  //   } = evt;
-  //   if (!value.length) {
-  //   }
-  // };
-
   const handleSelectorChange = function (evt) {
     const {
       target: { value },
@@ -36,6 +24,12 @@ export default function InputControl({
     selectorCallback(value);
     return field.onChange(evt);
   };
+
+  const renderError = (error) => (
+    <label className="text-red-500 italic">
+      {error !== undefined && error}
+    </label>
+  );
 
   const renderSelector = () => {
     return (
@@ -60,6 +54,7 @@ export default function InputControl({
               );
             })}
         </select>
+        {renderError(meta.error)}
       </div>
     );
   };
@@ -79,9 +74,7 @@ export default function InputControl({
             meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
           }`}
         />
-        <label className="text-red-500 italic">
-          {meta.error !== undefined && meta.error}
-        </label>
+        {renderError(meta.error)}
       </div>
     );
   };

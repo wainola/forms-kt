@@ -5,6 +5,8 @@ import {
   nameValidation,
   emailValidation,
   phoneValidation,
+  regionValidator,
+  comuneValidator,
 } from '../utils/validations';
 
 export default function Register() {
@@ -91,6 +93,7 @@ export default function Register() {
               label="Region"
               options={regions}
               selectorCallback={searchComunes}
+              validateFunc={regionValidator}
             />
             <InputControl
               name="comune"
@@ -100,6 +103,7 @@ export default function Register() {
               id="comune"
               label="comune"
               options={comunes}
+              validateFunc={comuneValidator}
             />
             <button type="submit">Submit</button>
           </FormComponent>

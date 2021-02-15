@@ -1,5 +1,12 @@
 import * as Yup from 'yup';
 
+const getError = (error) => {
+  const {
+    errors: [errorMsg],
+  } = error;
+  return errorMsg;
+};
+
 export const nameValidation = (names) => {
   console.log('validating', names);
   if (!names.length) return 'No names where addded';
@@ -17,10 +24,7 @@ export const emailValidation = async (email) => {
     await emailValidation.validate(email);
     return undefined;
   } catch (error) {
-    const {
-      errors: [errorMsg],
-    } = error;
-    return errorMsg;
+    return getError(error);
   }
 };
 
@@ -33,9 +37,28 @@ export const phoneValidation = async (phone) => {
     await phoneValidation.validate(phone);
     return undefined;
   } catch (error) {
-    const {
-      errors: [errorMsg],
-    } = error;
-    return errorMsg;
+    return getError(error);
+  }
+};
+
+export const regionValidator = async (region) => {
+  const regionValidator = Yup.string().required('You must select a region');
+
+  try {
+    await regionValidator.validate(region);
+    return undefined;
+  } catch (error) {
+    return getError(error);
+  }
+};
+
+export const comuneValidator = async (comune) => {
+  const comuneValidator = Yup.string().required('You must select a comune');
+
+  try {
+    await comuneValidator.validate(comune);
+    return undefined;
+  } catch (error) {
+    return getError(error);
   }
 };
