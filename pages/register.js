@@ -16,8 +16,12 @@ export default function Register() {
   };
 
   const searchComunes = (numbermRegion) => {
-    const comunesFiltered = getComunes(numbermRegion);
-    console.log('numberRegion', comunesFiltered);
+    const comunesFiltered = getComunes(numbermRegion).map((e) => ({
+      label: e.name,
+      value: e.name,
+      id: e.code,
+    }));
+    setComunes(comunesFiltered);
   };
 
   // HERE I CAN DO THE SUBMITING

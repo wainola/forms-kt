@@ -19,7 +19,7 @@ export default function InputText({
 
   const handleSelectorChange = (evt) => {
     const {
-      target: { name, value },
+      target: { value },
     } = evt;
     selectorCallback(value);
     return field.onChange(evt);
