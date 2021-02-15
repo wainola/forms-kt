@@ -9,6 +9,7 @@ export default function InputText({
   label,
   name,
   options,
+  selectorCallback,
 }) {
   const [field, meta, helpers] = useField(name);
 
@@ -16,14 +17,35 @@ export default function InputText({
     return field.onChange(evt);
   };
 
+  const handleSelectorChange = (evt) => {
+    const {
+      target: { name, value },
+    } = evt;
+    selectorCallback(value);
+    return field.onChange(evt);
+  };
+
   const renderSelector = () => {
     return (
       <div className="flex flex-col">
         <label htmlFor={labelFor}>{label}</label>
-        <select name={name} id={id}>
+        <select
+          name={name}
+          id={id}
+          disabled={!options.length}
+          onChange={handleSelectorChange}
+        >
           {Array.isArray(options) &&
-            options.map((e) => {
-              return <option value={e}>{e}</option>;
+            options.map((e, idx) => {
+              return idx !== 0 ? (
+                <option key={`${e.id}-${idx}`} value={e.id}>
+                  {e.label}
+                </option>
+              ) : (
+                <option key={`${idx}`} value={''}>
+                  {`Select a ${name}`}
+                </option>
+              );
             })}
         </select>
       </div>
@@ -52,5 +74,6 @@ export default function InputText({
     }
     return renderSelector();
   };
+
   return renderTypeOfInput(type);
 }

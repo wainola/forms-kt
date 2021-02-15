@@ -1777,10 +1777,21 @@ const regionsAndComunes = [
   },
 ];
 
-export const getRegions = regionsAndComunes.map((item) => item.region);
+export const getRegions = regionsAndComunes.map((item) => ({
+  label: item.region,
+  value: item.region,
+  id: item.region_number,
+}));
 
-export const getComunes = (region) =>
-  regionsAndComunes
-    .filter((item) => item.region === region)
-    .map((data) => data.provincias)
-    .reduce((acc, elem) => acc.push(...elem.comunas), []);
+export const getComunes = (numberRegion) => {
+  const { provincias } = regionsAndComunes.find(
+    (item) => item.region_number === numberRegion,
+  );
+
+  const comunes = provincias.reduce((acc, elem) => {
+    acc = [...acc, ...elem.comunas];
+    return acc;
+  }, []);
+
+  return comunes;
+};

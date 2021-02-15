@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormComponent, InputDNI, InputText } from '../components';
 import { getComunes, getRegions } from '../utils/constants';
 
 export default function Register() {
   const [comunes, setComunes] = useState([]);
   const regions = getRegions;
-  console.log('regions', regions);
 
   const formValues = {
     dni: '',
+    names: '',
+    email: '',
+    phone: '',
+    region: '',
+    comune: '',
+  };
+
+  const searchComunes = (numbermRegion) => {
+    const comunesFiltered = getComunes(numbermRegion);
+    console.log('numberRegion', comunesFiltered);
   };
 
   // HERE I CAN DO THE SUBMITING
@@ -63,6 +72,7 @@ export default function Register() {
             id="region"
             label="region"
             options={regions}
+            selectorCallback={searchComunes}
           />
           <InputText
             name="comune"
