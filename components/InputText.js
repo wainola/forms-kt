@@ -43,7 +43,9 @@ export default function InputControl({
           disabled={!options.length}
           onChange={handleSelectorChange}
           className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
-            meta.error !== undefined ? 'border-red-300' : 'border-grey-300'
+            meta.error !== undefined
+              ? 'border-red-500 placeholder-red-500'
+              : 'border-grey-300'
           }`}
         >
           {Array.isArray(options) &&
@@ -78,7 +80,9 @@ export default function InputControl({
           onChange={field.onChange}
           onBlur={field.onBlur}
           className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
-            meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
+            meta.error !== undefined
+              ? 'border-red-500 placeholder-red-500'
+              : 'border-gray-300'
           }`}
         />
         {renderError(meta.error)}

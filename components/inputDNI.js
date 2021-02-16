@@ -38,7 +38,9 @@ export default function InputDNI({
         onBlur={onBlur}
         onFocus={onFocus}
         className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
-          meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
+          meta.error !== undefined
+            ? 'border-red-500 placeholder-red-500'
+            : 'border-gray-300'
         }`}
       />
     </div>
