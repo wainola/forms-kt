@@ -26,20 +26,25 @@ export default function InputControl({
   };
 
   const renderError = (error) => (
-    <label className="text-red-500 italic">
+    <label className="text-red-500 italic text-base">
       {error !== undefined && error}
     </label>
   );
 
   const renderSelector = () => {
     return (
-      <div className="flex flex-col">
-        <label htmlFor={labelFor}>{label}</label>
+      <div className="flex flex-col mt-2 mb-2">
+        <label className="mb-2 text-blue-900 text-base" htmlFor={labelFor}>
+          {label}
+        </label>
         <select
           name={name}
           id={id}
           disabled={!options.length}
           onChange={handleSelectorChange}
+          className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
+            meta.error !== undefined ? 'border-red-300' : 'border-grey-300'
+          }`}
         >
           {Array.isArray(options) &&
             options.map((e, idx) => {
@@ -61,8 +66,10 @@ export default function InputControl({
 
   const renderInputText = () => {
     return (
-      <div className="flex flex-col">
-        <label htmlFor={labelFor}>{label}</label>
+      <div className="flex flex-col mt-2 mb-2">
+        <label className="mb-2 text-blue-900 text-base" htmlFor={labelFor}>
+          {label}
+        </label>
         <input
           type={type}
           placeholder={placeholder}
@@ -70,7 +77,7 @@ export default function InputControl({
           name={name}
           onChange={field.onChange}
           onBlur={field.onBlur}
-          className={`border-2 ${
+          className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
             meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
           }`}
         />

@@ -37,9 +37,9 @@ export default function Register() {
     console.log('values external submit', values);
   };
   return (
-    <div className="flex flex-col h-screen justify-center">
-      <div className="flex flex-col ml-16 mr-16 border-2 border-red-300 shadow rounded-md h-3/6">
-        <div className="flex flex-row justify-center">
+    <div className="flex flex-col h-screen justify-center lg:w-full">
+      <div className="flex flex-col self-center ml-16 mr-16 border-2 border-red-300 shadow rounded-md h-5/6 text-xl lg:w-2/5">
+        <div className="flex flex-row justify-center mt-4 text-2xl italic text-blue-900">
           <h2>Register</h2>
         </div>
         <div className="flex flex-col ml-16 mr-16">
@@ -52,7 +52,7 @@ export default function Register() {
             <InputDNI
               name="dni"
               type="text"
-              placeholder="dni"
+              placeholder="DNI"
               labelFor="dni"
               id="dni"
               label="DNI"
@@ -101,11 +101,18 @@ export default function Register() {
               placeholder="Enter your comune"
               labelFor="comune"
               id="comune"
-              label="comune"
+              label="Comune"
               options={comunes}
               validateFunc={comuneValidator}
             />
-            <button type="submit">Submit</button>
+            <div className="flex flex-row justify-center">
+              <button
+                className="border-2 pl-10 pr-10 pt-2 pb-2 rounded-md border-blue-700 bg-blue-500 text-white"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
           </FormComponent>
         </div>
       </div>

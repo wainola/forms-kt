@@ -11,8 +11,12 @@ export default function InputDNI({
   onFocus,
   label,
   name,
+  validateFunc,
 }) {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta, helpers] = useField({
+    name,
+    validate: validateFunc,
+  });
 
   const handleChange = function (evt) {
     console.log('here validatin');
@@ -21,8 +25,10 @@ export default function InputDNI({
 
   // console.log('data', meta);
   return (
-    <div className="flex flex-col">
-      <label htmlFor={labelFor}>{label}</label>
+    <div className="flex flex-col mt-2 mb-2">
+      <label className="mb-2 text-blue-900 text-base" htmlFor={labelFor}>
+        {label}
+      </label>
       <input
         type={type}
         placeholder={placeholder}
@@ -31,7 +37,9 @@ export default function InputDNI({
         onChange={handleChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="border-2"
+        className={`border-2 rounded-md text-base pt-2 pb-2 pl-2 ${
+          meta.error !== undefined ? 'border-red-300' : 'border-gray-300'
+        }`}
       />
     </div>
   );
