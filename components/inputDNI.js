@@ -46,6 +46,7 @@ export default function InputDNI({
             ? 'border-red-500 placeholder-red-500'
             : 'border-gray-300'
         }`}
+        value={field.value}
       />
       {renderError(meta.error)}
     </div>

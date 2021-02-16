@@ -17,13 +17,14 @@ export default function InputControl({
     validate: validateFunc,
   });
 
-  console.log('meta:', meta);
+  console.log('meta:', field.value);
 
   const handleSelectorChange = function (evt) {
     const {
-      target: { value },
+      target: { name, value },
     } = evt;
-    selectorCallback(value);
+    console.log(name);
+    if (typeof selectorCallback === 'function') selectorCallback(value);
     return field.onChange(evt);
   };
 
@@ -49,6 +50,7 @@ export default function InputControl({
               ? 'border-red-500 placeholder-red-500'
               : 'border-grey-300'
           }`}
+          value={field.value}
         >
           {Array.isArray(options) &&
             options.map((e, idx) => {
@@ -86,6 +88,7 @@ export default function InputControl({
               ? 'border-red-500 placeholder-red-500'
               : 'border-gray-300'
           }`}
+          value={field.value}
         />
         {renderError(meta.error)}
       </div>

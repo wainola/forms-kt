@@ -64,13 +64,12 @@ export const comuneValidator = async (comune) => {
 };
 
 export const dniCompute = async (dni) => {
-  // console.log('dni validator', dni);
-  const dniCleaned = dni.replace(/\./gm, '').replace(/\-/gm);
+  const dniCleaned = dni.replace(/\./gm, '').replace(/\-/gm, '');
 
   const matrix = [2, 3, 4, 5, 6, 7];
 
   const numbers = dniCleaned.substring(0, dniCleaned.length - 1).split('');
-  const vd = dniCleaned[dniCleaned.length];
+  const vd = dniCleaned[dniCleaned.length - 1];
 
   let counter = 0;
   const sum = numbers.reduceRight((acc, num) => {
@@ -85,11 +84,27 @@ export const dniCompute = async (dni) => {
     return acc;
   }, 0);
 
-  const resultOfValidation = 11 - (sum % 11) === parseInt(vd, 10);
+  const resultOfValidation = 11 - (sum % 11);
 
-  console.log('resultOfValidation', resultOfValidation);
+  if (resultOfValidation === 10) {
+    console.log('vd is k', vd);
+    return vd.toLowerCase() === 'k'
+      ? Promise.resolve(true)
+      : Promise.reject(false);
+  }
 
-  return resultOfValidation ? Promise.resolve(true) : Promise.reject(false);
+  console.log(
+    'resultOfValidation',
+    sum,
+    sum % 11,
+    11 - (sum % 11),
+    vd,
+    resultOfValidation,
+  );
+
+  return resultOfValidation === parseInt(vd, 10)
+    ? Promise.resolve(true)
+    : Promise.reject(false);
 };
 
 export const dniValidator = async (dni) => {
@@ -97,16 +112,15 @@ export const dniValidator = async (dni) => {
     'dni',
     'Invalid DNI',
     async function (value, context) {
-      // console.log('the value', value, context);
       try {
-        await dniCompute(value);
+        const resultOfValidation = await dniCompute(value);
+        return resultOfValidation;
       } catch (error) {
+        console.log('error', error);
         return error;
       }
     },
   );
-
-  // const dniValidator = Yup.string().required('fuck you');
 
   try {
     await dniValidator.validate(dni);

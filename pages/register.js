@@ -12,8 +12,14 @@ import {
 
 export default function Register() {
   const [comunes, setComunes] = useState([]);
-  const regions = getRegions;
-
+  const [formData, setFormData] = useState({
+    identity: '',
+    names: '',
+    email: '',
+    phone: '',
+    region: '',
+    comune: '',
+  });
   const formValues = {
     identity: '',
     names: '',
@@ -22,6 +28,7 @@ export default function Register() {
     region: '',
     comune: '',
   };
+  const regions = getRegions;
 
   const searchComunes = (numbermRegion) => {
     const comunesFiltered = getComunes(numbermRegion).map((e) => ({
@@ -34,8 +41,16 @@ export default function Register() {
 
   // HERE I CAN DO THE SUBMITING
   const handleSubmit = async function (values, actions) {
-    console.log('values external submit', values);
+    console.info('values external submit', values);
+    return cleanForm(actions);
   };
+
+  const cleanForm = async (actions) => {
+    await actions.setSubmitting(false);
+    await actions.resetForm();
+  };
+
+  console.log('formData', formValues);
   return (
     <div className="flex flex-col h-screen justify-center lg:w-full">
       <div className="flex flex-col self-center ml-16 mr-16 border-2 border-red-300 shadow rounded-md h-5/6 text-xl lg:w-2/5">
