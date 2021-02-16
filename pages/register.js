@@ -7,6 +7,7 @@ import {
   phoneValidation,
   regionValidator,
   comuneValidator,
+  dniValidator,
 } from '../utils/validations';
 
 export default function Register() {
@@ -14,7 +15,7 @@ export default function Register() {
   const regions = getRegions;
 
   const formValues = {
-    dni: '',
+    identity: '',
     names: '',
     email: '',
     phone: '',
@@ -33,7 +34,6 @@ export default function Register() {
 
   // HERE I CAN DO THE SUBMITING
   const handleSubmit = async function (values, actions) {
-    evt.preventDefault();
     console.log('values external submit', values);
   };
   return (
@@ -50,12 +50,13 @@ export default function Register() {
             validationOnBlur={false}
           >
             <InputDNI
-              name="dni"
+              name="identity"
               type="text"
               placeholder="DNI (11.111.111-2)"
-              labelFor="dni"
-              id="dni"
-              label="DNI"
+              labelFor="identity"
+              id="identity"
+              label="Enter your DNI"
+              validateFunc={dniValidator}
             />
             <InputControl
               name="names"

@@ -63,7 +63,8 @@ export const comuneValidator = async (comune) => {
   }
 };
 
-export const dniValidator = async (dni) => {
+export const dniCompute = async (dni) => {
+  // console.log('dni validator', dni);
   const dniCleaned = dni.replace(/\./gm, '').replace(/\-/gm);
 
   const matrix = [2, 3, 4, 5, 6, 7];
@@ -84,5 +85,33 @@ export const dniValidator = async (dni) => {
     return acc;
   }, 0);
 
-  return 11 - (sum % 11) === parseInt(vd, 10) ? undefined : 'blah';
+  const resultOfValidation = 11 - (sum % 11) === parseInt(vd, 10);
+
+  console.log('resultOfValidation', resultOfValidation);
+
+  return resultOfValidation ? Promise.resolve(true) : Promise.reject(false);
+};
+
+export const dniValidator = async (dni) => {
+  const dniValidator = Yup.string().test(
+    'dni',
+    'Invalid DNI',
+    async function (value, context) {
+      // console.log('the value', value, context);
+      try {
+        await dniCompute(value);
+      } catch (error) {
+        return error;
+      }
+    },
+  );
+
+  // const dniValidator = Yup.string().required('fuck you');
+
+  try {
+    await dniValidator.validate(dni);
+    return undefined;
+  } catch (error) {
+    return getError(error);
+  }
 };

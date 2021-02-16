@@ -17,6 +17,8 @@ export default function InputControl({
     validate: validateFunc,
   });
 
+  console.log('meta:', meta);
+
   const handleSelectorChange = function (evt) {
     const {
       target: { value },
