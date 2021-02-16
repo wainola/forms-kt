@@ -52,7 +52,7 @@ export default function Register() {
             <InputDNI
               name="dni"
               type="text"
-              placeholder="DNI"
+              placeholder="DNI (11.111.111-2)"
               labelFor="dni"
               id="dni"
               label="DNI"

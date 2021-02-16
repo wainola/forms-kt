@@ -62,3 +62,27 @@ export const comuneValidator = async (comune) => {
     return getError(error);
   }
 };
+
+export const dniValidator = async (dni) => {
+  const dniCleaned = dni.replace(/\./gm, '').replace(/\-/gm);
+
+  const matrix = [2, 3, 4, 5, 6, 7];
+
+  const numbers = dniCleaned.substring(0, dniCleaned.length - 1).split('');
+  const vd = dniCleaned[dniCleaned.length];
+
+  let counter = 0;
+  const sum = numbers.reduceRight((acc, num) => {
+    if (counter === matrix.length - 1) {
+      acc += parseInt(num, 10) * matrix[counter];
+      counter = 0;
+      return acc;
+    }
+
+    acc += parseInt(num, 10) * matrix[counter];
+    counter++;
+    return acc;
+  }, 0);
+
+  return 11 - (sum % 11) === parseInt(vd, 10) ? undefined : 'blah';
+};
