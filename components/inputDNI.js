@@ -10,17 +10,10 @@ export default function InputDNI({
   name,
   validateFunc,
 }) {
-  const [field, meta, helpers] = useField({
+  const [field, meta] = useField({
     name,
     validate: validateFunc,
   });
-
-  // const handleChange = function (evt) {
-  //   console.log('here validatin');
-  //   return field.onChange(evt);
-  // };
-
-  // console.log('data', meta, field);
 
   const renderError = (error) => (
     <label className="text-red-500 italic text-base">

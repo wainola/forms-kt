@@ -12,14 +12,6 @@ import {
 
 export default function Register() {
   const [comunes, setComunes] = useState([]);
-  const [formData, setFormData] = useState({
-    identity: '',
-    names: '',
-    email: '',
-    phone: '',
-    region: '',
-    comune: '',
-  });
   const formValues = {
     identity: '',
     names: '',
@@ -41,7 +33,7 @@ export default function Register() {
 
   // HERE I CAN DO THE SUBMITING
   const handleSubmit = async function (values, actions) {
-    console.info('values external submit', values);
+    console.table(values);
     return cleanForm(actions);
   };
 
@@ -50,7 +42,6 @@ export default function Register() {
     await actions.resetForm();
   };
 
-  console.log('formData', formValues);
   return (
     <div className="flex flex-col h-screen justify-center lg:w-full">
       <div className="flex flex-col self-center ml-16 mr-16 border-2 border-red-300 shadow rounded-md h-5/6 text-xl lg:w-2/5">

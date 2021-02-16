@@ -12,12 +12,10 @@ export default function InputControl({
   selectorCallback,
   validateFunc,
 }) {
-  const [field, meta, helpers] = useField({
+  const [field, meta] = useField({
     name,
     validate: validateFunc,
   });
-
-  console.log('meta:', field.value);
 
   const handleSelectorChange = function (evt) {
     const {

@@ -93,15 +93,6 @@ export const dniCompute = async (dni) => {
       : Promise.reject(false);
   }
 
-  console.log(
-    'resultOfValidation',
-    sum,
-    sum % 11,
-    11 - (sum % 11),
-    vd,
-    resultOfValidation,
-  );
-
   return resultOfValidation === parseInt(vd, 10)
     ? Promise.resolve(true)
     : Promise.reject(false);
@@ -111,12 +102,11 @@ export const dniValidator = async (dni) => {
   const dniValidator = Yup.string().test(
     'dni',
     'Invalid DNI',
-    async function (value, context) {
+    async function (value) {
       try {
         const resultOfValidation = await dniCompute(value);
         return resultOfValidation;
       } catch (error) {
-        console.log('error', error);
         return error;
       }
     },
