@@ -7,7 +7,7 @@ export default function Reimbursement() {
     email: '',
     dni: '',
   };
-  const handleSubmit = (data) => console.log('submited data', data);
+  const submit = (data) => alert(JSON.stringify(data));
   return (
     <div className="flex flex-col h-screen justify-center lg:w-full">
       <div className="flex flex-col self-center ml-16 mr-16 border-2 border-red-300 shadow rounded-md h-5/6 text-xl lg:w-2/5">
@@ -15,7 +15,7 @@ export default function Reimbursement() {
           <h2>Reimbursement</h2>
         </div>
         <div className="flex flex-col ml-16 mr-16">
-          <RHFormComponent submit={handleSubmit} defaultValues={defaultValues}>
+          <RHFormComponent defaultValues={defaultValues} submit={submit}>
             <RHInputControl
               name="name"
               label="Names"

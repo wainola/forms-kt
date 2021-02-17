@@ -15,7 +15,6 @@ export const nameValidation = (names) => {
 };
 
 export const emailValidation = async (email) => {
-  console.log('email validation', email);
   const emailValidation = Yup.string()
     .email('Invalid email address')
     .required('Must add an email address');
@@ -24,7 +23,6 @@ export const emailValidation = async (email) => {
     await emailValidation.validate(email);
     return undefined;
   } catch (error) {
-    console.log('error', error);
     return getError(error);
   }
 };
