@@ -8,7 +8,6 @@ const getError = (error) => {
 };
 
 export const nameValidation = (names) => {
-  console.log('validating', names);
   if (!names.length) return 'No names where addded';
   if (names.split(' ').length !== 2)
     return 'Either you added your name or your lastname';
@@ -16,6 +15,7 @@ export const nameValidation = (names) => {
 };
 
 export const emailValidation = async (email) => {
+  console.log('email validation', email);
   const emailValidation = Yup.string()
     .email('Invalid email address')
     .required('Must add an email address');
@@ -24,6 +24,7 @@ export const emailValidation = async (email) => {
     await emailValidation.validate(email);
     return undefined;
   } catch (error) {
+    console.log('error', error);
     return getError(error);
   }
 };
